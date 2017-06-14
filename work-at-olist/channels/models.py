@@ -1,3 +1,31 @@
 from django.db import models
+from django.db import IntegrityError
+from hashid_field import HashidAutoField
 
-# Create your models here.
+
+class Channel(models.Model):
+    """
+    Stores a channel and its related parent if exist
+    """
+    id = HashidAutoField(primary_key=True)
+    name = models.CharField(max_length=60)
+
+    def __str__(self):
+        return self.name
+
+
+class Category(models.Model):
+    """
+    Stores a category with or without its parent.
+    A combination of name and parent must be unique.
+    """
+    id = HashidAutoField(primary_key=True)
+    name = models.CharField(max_length=60)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    channel = models.ForeignKey(Channel, related_name='categories')
+
+    class Meta:
+        unique_together = (('name', 'parent', 'channel'),)
+
+    def __str__(self):
+        return self.name
