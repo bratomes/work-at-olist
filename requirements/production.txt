@@ -3,4 +3,4 @@ psycopg2==2.7.1
 prettyconf==1.2.3
 dj-database-url==0.4.2
 djangorestframework==3.6.3
-django-hashid-field==1.2.1
+django-hashid-field==1.2.2
