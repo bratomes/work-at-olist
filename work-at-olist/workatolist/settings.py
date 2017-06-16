@@ -31,6 +31,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
+    'rest_framework',
     'channels'
 ]
 
