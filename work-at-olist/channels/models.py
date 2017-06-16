@@ -21,7 +21,9 @@ class Category(models.Model):
     """
     id = HashidAutoField(primary_key=True)
     name = models.CharField(max_length=60)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    parent = models.ForeignKey(
+        'self', on_delete=models.CASCADE,
+        null=True, related_name='subcategories')
     channel = models.ForeignKey(Channel, related_name='categories')
 
     class Meta:
