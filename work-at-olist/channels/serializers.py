@@ -19,3 +19,12 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id', 'name')
+
+
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    parent = HashidSerializerCharField(source_field='channels.Category.id')
+    subcategories = CategorySerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Category
+        fields = ('name', 'parent', 'subcategories')
