@@ -32,6 +32,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'rest_framework',
+    'django_filters',
     'channels'
 ]
 
@@ -117,3 +118,10 @@ STATIC_URL = '/static/'
 
 # Hashid settings
 HASHID_FIELD_SALT = config('HASHID_FIELD_SALT')
+
+# Django Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    )
+}
