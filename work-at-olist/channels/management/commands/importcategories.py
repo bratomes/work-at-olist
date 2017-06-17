@@ -1,9 +1,12 @@
 # importcategories.py
 import csv
+import logging
 
 from django.core.management.base import BaseCommand, CommandError
 
 from channels.models import Channel, Category
+
+logger = logging.getLogger('command')
 
 
 def read_csv_file(csv_file):
@@ -29,13 +32,19 @@ class Command(BaseCommand):
         parser.add_argument('csv_file')
 
     def handle(self, *args, **options):
+        logger.info('Starting to import categories...')
+
         channel_name = options['channel_name']
         csv_file = options['csv_file']
 
         # try to get channel, if not exist, create it
         channel, created = Channel.objects.get_or_create(name=channel_name)
         if created:
-            self.stdout.write('Created {} channel'.format(channel_name))
+            logger.info('Channel does not exist. Created {} channel.'.format(
+                channel_name
+            ))
+        else:
+            logger.info('Channel {} already exist.'.format(channel_name))
 
         for row in read_csv_file(csv_file):
             # if length is 1, there is only the root category
@@ -85,6 +94,6 @@ class Command(BaseCommand):
 
 
             if created:
-                self.stdout.write('Created {} category'.format(category.name))
+                logger.info('Created {} category'.format(category.name))
             else:
-                self.stdout.write('Updated {} category'.format(category.name))
+                logger.info('Updated {} category'.format(category.name))
