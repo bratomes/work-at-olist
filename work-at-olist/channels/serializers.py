@@ -15,9 +15,7 @@ class ChannelSerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
     id = HashidSerializerCharField(source_field='channels.Category.id')
-    parent = HashidSerializerCharField(source_field='channels.Category.id')
-    channel = HashidSerializerCharField(source_field='channels.Channel.id')
 
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ('id', 'name')
