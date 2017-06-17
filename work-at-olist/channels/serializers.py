@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import serializers
 from hashid_field.rest import HashidSerializerCharField
 
@@ -9,4 +10,14 @@ class ChannelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Channel
+        fields = '__all__'
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    id = HashidSerializerCharField(source_field='channels.Category.id')
+    parent = HashidSerializerCharField(source_field='channels.Category.id')
+    channel = HashidSerializerCharField(source_field='channels.Channel.id')
+
+    class Meta:
+        model = Category
         fields = '__all__'
