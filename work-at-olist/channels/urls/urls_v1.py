@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from .views import ChannelList, CategoryList, CategoryDetail
+from channels.views import ChannelList, CategoryList, CategoryDetail
 
 urlpatterns = [
     url(r'^channels/$', ChannelList.as_view(), name='channels-list'),
