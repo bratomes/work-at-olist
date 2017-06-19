@@ -134,6 +134,12 @@ REST_FRAMEWORK = {
     )
 }
 
+# Rest Framework Docs
+REST_FRAMEWORK_DOCS = {
+    'HIDE_DOCS': config('HIDE_DRFDOCS', default=False)
+}
+
+
 # Logging
 LOGGING = {
     'version': 1,
