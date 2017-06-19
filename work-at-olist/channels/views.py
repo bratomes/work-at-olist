@@ -21,10 +21,11 @@ class ChannelList(APIView):
 
 class CategoryList(APIView):
     """
-    List all categories filtered by a channel. If no channel filter is provided
-    will return 404
+    List all categories filtered by a channel query parameter.
+    If no channel parameter is provided will return 404.
+    (e.g. /api/v1/categories/?channel=wallmart)
     """
-    def get(self, requeset, format=None):
+    def get(self, request, format=None):
         channel = self.request.query_params.get('channel', None)
 
         if channel is None:
@@ -37,7 +38,9 @@ class CategoryList(APIView):
 
 class CategoryDetail(APIView):
     """
-    Retrieve a category instance of a channel, with its parent and subcategories
+    Return a category instance of a channel, with its parent and subcategories.
+    You must filter by a channel query parameter, otherwise will return 404.
+    (e.g. /api/v1/categories/<pk>/?channel=wallmart)
     """
     def get_object(self, pk):
         try:
