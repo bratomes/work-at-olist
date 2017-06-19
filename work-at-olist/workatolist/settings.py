@@ -21,26 +21,22 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=config.list)
 
 # Application definition
 
-DJANGO_APPS = [
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
-
-THIRD_PARTY_APPS = [
+    # third-party apps
     'rest_framework',
     'django_filters',
     'silk',
+    # local apps
+    'channels',
+    # Documentation app
+    'rest_framework_docs',
 ]
-
-LOCAL_APPS = [
-    'channels'
-]
-
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE_CLASSES = [
     'silk.middleware.SilkyMiddleware',
