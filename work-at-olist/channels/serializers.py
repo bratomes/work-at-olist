@@ -5,23 +5,23 @@ from hashid_field.rest import HashidSerializerCharField
 from .models import Channel, Category
 
 
-class ChannelSerializer(serializers.ModelSerializer):
-    id = HashidSerializerCharField(source_field='channels.Channel.id')
+class ChannelSerializer(serializers.HyperlinkedModelSerializer):
+    # id = HashidSerializerCharField(source_field='channels.Channel.id')
 
     class Meta:
         model = Channel
-        fields = '__all__'
+        fields = ('name',)
 
 
-class CategorySerializer(serializers.ModelSerializer):
-    id = HashidSerializerCharField(source_field='channels.Category.id')
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    # id = HashidSerializerCharField(source_field='channels.Category.id')
 
     class Meta:
         model = Category
-        fields = ('id', 'name')
+        fields = ('url', 'name')
 
 
-class CategoryDetailSerializer(serializers.ModelSerializer):
+class CategoryDetailSerializer(serializers.HyperlinkedModelSerializer):
     parent = HashidSerializerCharField(source_field='channels.Category.id')
     subcategories = CategorySerializer(read_only=True, many=True)
 

@@ -15,7 +15,9 @@ class ChannelList(APIView):
     """
     def get(self, request, format=None):
         channels = Channel.objects.all()
-        serializer = ChannelSerializer(channels, many=True)
+        serializer = ChannelSerializer(
+            channels, context={'request': request}, many=True
+        )
         return Response(serializer.data)
 
 
@@ -32,7 +34,9 @@ class CategoryList(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         categories = Category.objects.filter(channel__name=channel)
-        serializer = CategorySerializer(categories, many=True)
+        serializer = CategorySerializer(
+            categories, context={'request': request}, many=True
+        )
         return Response(serializer.data)
 
 
@@ -56,5 +60,7 @@ class CategoryDetail(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         category = self.get_object(pk)
-        serializer = CategoryDetailSerializer(category)
+        serializer = CategoryDetailSerializer(
+            category, context={'request': request}
+        )
         return Response(serializer.data)
