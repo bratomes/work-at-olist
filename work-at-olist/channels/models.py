@@ -1,5 +1,6 @@
 from django.db import models
 from django.db import IntegrityError
+from django.utils.text import slugify
 from hashid_field import HashidAutoField
 
 
@@ -13,6 +14,10 @@ class Channel(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Channel, self).save(*args, **kwargs)
 
 
 class Category(models.Model):
@@ -33,3 +38,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
