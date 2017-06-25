@@ -35,9 +35,7 @@ class CategoryList(APIView):
 
 class CategoryDetail(APIView):
     """
-    Return a category instance of a channel, with its parent and subcategories.
-    You must filter by a channel query parameter, otherwise will return 404.
-    (e.g. /api/v1/categories/<pk>/?channel=wallmart)
+    Return a category instance, with its parent and subcategories.
     """
     def get_object(self, pk):
         try:
@@ -46,12 +44,6 @@ class CategoryDetail(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-
-        channel = self.request.query_params.get('channel', None)
-
-        if channel is None:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
         category = self.get_object(pk)
         serializer = CategoryDetailSerializer(
             category, context={'request': request}

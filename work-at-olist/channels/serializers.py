@@ -20,7 +20,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CategoryDetailSerializer(serializers.HyperlinkedModelSerializer):
-    parent = HashidSerializerCharField(source_field='channels.Category.id')
+    parent = CategorySerializer(read_only=True)
     subcategories = CategorySerializer(read_only=True, many=True)
 
     class Meta:
