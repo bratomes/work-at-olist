@@ -14,8 +14,6 @@ class ChannelSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    # id = HashidSerializerCharField(source_field='channels.Category.id')
-
     class Meta:
         model = Category
         fields = ('url', 'name')

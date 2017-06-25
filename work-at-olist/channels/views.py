@@ -23,17 +23,10 @@ class ChannelList(APIView):
 
 class CategoryList(APIView):
     """
-    List all categories filtered by a channel query parameter.
-    If no channel parameter is provided will return 404.
-    (e.g. /api/v1/categories/?channel=wallmart)
+    List all categories filtered by a channel.
     """
-    def get(self, request, format=None):
-        channel = self.request.query_params.get('channel', None)
-
-        if channel is None:
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        categories = Category.objects.filter(channel__name=channel)
+    def get(self, request, channel_slug, format=None):
+        categories = Category.objects.filter(channel__slug=channel_slug)
         serializer = CategorySerializer(
             categories, context={'request': request}, many=True
         )
