@@ -10,12 +10,13 @@ class Channel(models.Model):
     """
     id = HashidAutoField(primary_key=True)
     name = models.CharField(max_length=60)
-    slug = models.SlugField(max_length=70)
+    slug = models.SlugField(max_length=70, unique=True)
 
     def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):
+        # automatically fill the slug field
         self.slug = slugify(self.name)
         super(Channel, self).save(*args, **kwargs)
 
@@ -40,5 +41,6 @@ class Category(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        # automatically fill the slug field
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
