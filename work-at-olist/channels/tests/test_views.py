@@ -17,24 +17,15 @@ class ChannelListTest(APITestCase):
         self.assertTrue('Wallmart' in response.data[0]['name'])
 
 
-class CategoryListTest(APITestCase):
+class ChannelDetailTest(APITestCase):
     def setUp(self):
-        self.channel = mommy.make(
-            'channels.Channel', id='AXNnvXd', name='wallmart'
-        )
-        self.url_filtered = '{}?channel={}'.format(
-            reverse('categories-list'), self.channel.name
-        )
-        self.url_not_filtered = reverse('categories-list')
-        mommy.make('channels.Category', _quantity=5, channel=self.channel)
+        self.url = reverse('channel-detail', kwargs={'slug': 'wallmart'})
+        self.channel = mommy.make('channels.Channel', name='Wallmart')
+        mommy.make('channels.Category', _quantity=15, channel=self.channel)
 
-    def test_get_categories_list_not_filtered(self):
-        response = self.client.get(self.url_not_filtered)
-
-        self.assertTrue(status.is_client_error(response.status_code))
-
-    def test_get_categories_list_filtered(self):
-        response = self.client.get(self.url_filtered)
+    def test_get_channel_detail(self):
+        response = self.client.get(self.url)
 
         self.assertTrue(status.is_success(response.status_code))
-        self.assertEqual(len(response.data), 5)
+        self.assertEqual(response.data[0]['name'], 'Wallmart')
+        self.assertEqual(len(response.data[0]['categories']), 15)
