@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^api/v1/', include('channels.urls.urls_v1'))
 ]
 
-if settings.DEBUG:
+if settings.DEBUG or settings.TESTING:
     urlpatterns += [url(r'^silk/', include('silk.urls', namespace='silk'))]

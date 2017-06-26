@@ -1,4 +1,5 @@
 import os
+import sys
 
 from prettyconf import config
 from dj_database_url import config as db_config
@@ -15,6 +16,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=config.boolean)
+
+TESTING = 'test' in sys.argv
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=config.list)
 
