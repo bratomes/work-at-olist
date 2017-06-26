@@ -5,7 +5,7 @@ from rest_framework import status
 
 from .models import Channel, Category
 from .serializers import (
-    ChannelSerializer, CategorySerializer, CategoryDetailSerializer
+    ChannelSerializer, ChannelDetailSerializer, CategoryDetailSerializer
 )
 
 
@@ -21,13 +21,13 @@ class ChannelList(APIView):
         return Response(serializer.data)
 
 
-class CategoryList(APIView):
+class ChannelDetail(APIView):
     """
-    List all categories filtered by a channel.
+    Return a channel detail with its name, categories and subcateries.
     """
-    def get(self, request, channel_slug, format=None):
-        categories = Category.objects.filter(channel__slug=channel_slug)
-        serializer = CategorySerializer(
+    def get(self, request, slug, format=None):
+        categories = Channel.objects.filter(slug=slug)
+        serializer = ChannelDetailSerializer(
             categories, context={'request': request}, many=True
         )
         return Response(serializer.data)

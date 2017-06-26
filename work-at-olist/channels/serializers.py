@@ -6,17 +6,26 @@ from .models import Channel, Category
 
 
 class ChannelSerializer(serializers.HyperlinkedModelSerializer):
-    # id = HashidSerializerCharField(source_field='channels.Channel.id')
-
     class Meta:
         model = Channel
-        fields = ('name',)
+        fields = ('name', 'url')
+        extra_kwargs = {
+            'url': {'lookup_field': 'slug'}
+        }
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Category
         fields = ('url', 'name')
+
+
+class ChannelDetailSerializer(serializers.HyperlinkedModelSerializer):
+    categories = CategorySerializer(read_only=True, many=True)
+
+    class Meta:
+        model = Channel
+        fields = ('name', 'categories')
 
 
 class CategoryDetailSerializer(serializers.HyperlinkedModelSerializer):
