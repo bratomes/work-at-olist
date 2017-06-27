@@ -123,6 +123,7 @@ STATIC_URL = '/static/'
 
 # Hashid settings
 HASHID_FIELD_SALT = config('HASHID_FIELD_SALT')
+HASHID_FIELD_ALLOW_INT = False
 
 # Django Rest Framework
 REST_FRAMEWORK = {

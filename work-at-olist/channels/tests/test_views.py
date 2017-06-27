@@ -4,6 +4,8 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 from model_mommy import mommy
 
+from channels.models import Category
+
 
 class ChannelListTest(APITestCase):
     def setUp(self):
@@ -29,3 +31,21 @@ class ChannelDetailTest(APITestCase):
         self.assertTrue(status.is_success(response.status_code))
         self.assertEqual(response.data[0]['name'], 'Wallmart')
         self.assertEqual(len(response.data[0]['categories']), 15)
+
+
+class CategoryDetailTest(APITestCase):
+    def setUp(self):
+        self.channel = mommy.make('channels.Channel', name='Wallmart')
+        mommy.make('channels.Category', _quantity=15, channel=self.channel)
+
+    def test_get_category_by_hashid(self):
+        category = Category.objects.all()[2]
+        url = reverse('category-detail', kwargs={'pk': category.pk})
+        response = self.client.get(url)
+
+        self.assertTrue(status.is_success(response.status_code))
+
+    def test_get_category_by_id(self):
+        url = reverse('category-detail', kwargs={'pk': 3})
+        
+        self.assertRaises(TypeError, self.client.get, url)
