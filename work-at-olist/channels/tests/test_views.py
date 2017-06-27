@@ -47,5 +47,6 @@ class CategoryDetailTest(APITestCase):
 
     def test_get_category_by_id(self):
         url = reverse('category-detail', kwargs={'pk': 3})
-        
-        self.assertRaises(TypeError, self.client.get, url)
+        response = self.client.get(url)
+
+        self.assertTrue(status.is_client_error(response.status_code))

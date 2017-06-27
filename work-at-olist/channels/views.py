@@ -1,4 +1,5 @@
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -37,15 +38,14 @@ class CategoryDetail(APIView):
     """
     Return a category instance, with its parent and subcategories.
     """
-    def get_object(self, pk):
-        try:
-            return Category.objects.get(pk=pk)
-        except Category.DoesNotExist:
-            raise Http404
-
     def get(self, request, pk, format=None):
-        category = self.get_object(pk)
-        serializer = CategoryDetailSerializer(
-            category, context={'request': request}
-        )
+        try:
+            category = get_object_or_404(Category, pk=pk)
+        except TypeError:
+            raise Http404
+        else:
+            serializer = CategoryDetailSerializer(
+                category, context={'request': request}
+            )
+
         return Response(serializer.data)
