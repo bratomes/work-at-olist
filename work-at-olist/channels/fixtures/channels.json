@@ -1,0 +1,240 @@
+[
+{
+    "model": "channels.channel",
+    "pk": "3pjMKXw",
+    "fields": {
+        "name": "Wallmart",
+        "slug": "wallmart"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "3pjMKXw",
+    "fields": {
+        "name": "Books",
+        "slug": "books",
+        "parent": null,
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "R3jxdje",
+    "fields": {
+        "name": "National Literature",
+        "slug": "national-literature",
+        "parent": "3pjMKXw",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "xYXm87A",
+    "fields": {
+        "name": "Science Fiction",
+        "slug": "science-fiction",
+        "parent": "R3jxdje",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "Bx0a8XE",
+    "fields": {
+        "name": "Fiction Fantastic",
+        "slug": "fiction-fantastic",
+        "parent": "R3jxdje",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "m87RGXD",
+    "fields": {
+        "name": "Foreign Literature",
+        "slug": "foreign-literature",
+        "parent": "3pjMKXw",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "PkX6VX8",
+    "fields": {
+        "name": "Computers",
+        "slug": "computers",
+        "parent": "3pjMKXw",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "kA0v87x",
+    "fields": {
+        "name": "Applications",
+        "slug": "applications",
+        "parent": "PkX6VX8",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "6d7KpXr",
+    "fields": {
+        "name": "Database",
+        "slug": "database",
+        "parent": "PkX6VX8",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "1yXkmjM",
+    "fields": {
+        "name": "Programming",
+        "slug": "programming",
+        "parent": "PkX6VX8",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "Laj4o0R",
+    "fields": {
+        "name": "Games",
+        "slug": "games",
+        "parent": null,
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "JA0bN0D",
+    "fields": {
+        "name": "XBOX 360",
+        "slug": "xbox-360",
+        "parent": "Laj4o0R",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "yPX8q0b",
+    "fields": {
+        "name": "Console",
+        "slug": "console",
+        "parent": "JA0bN0D",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "Lqj5D0k",
+    "fields": {
+        "name": "Games",
+        "slug": "games",
+        "parent": "JA0bN0D",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "nqXr2XG",
+    "fields": {
+        "name": "Accessories",
+        "slug": "accessories",
+        "parent": "JA0bN0D",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "z4Xep7x",
+    "fields": {
+        "name": "XBOX One",
+        "slug": "xbox-one",
+        "parent": "Laj4o0R",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "ND0qO7J",
+    "fields": {
+        "name": "Console",
+        "slug": "console",
+        "parent": "z4Xep7x",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "340lKXq",
+    "fields": {
+        "name": "Games",
+        "slug": "games",
+        "parent": "z4Xep7x",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "VZ03BXm",
+    "fields": {
+        "name": "Accessories",
+        "slug": "accessories",
+        "parent": "z4Xep7x",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "Nz02QXE",
+    "fields": {
+        "name": "Playstation 4",
+        "slug": "playstation-4",
+        "parent": "Laj4o0R",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "yOjzpX3",
+    "fields": {
+        "name": "Computers",
+        "slug": "computers",
+        "parent": null,
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "9zXGWXD",
+    "fields": {
+        "name": "Notebooks",
+        "slug": "notebooks",
+        "parent": "yOjzpX3",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "xY7AljL",
+    "fields": {
+        "name": "Tablets",
+        "slug": "tablets",
+        "parent": "yOjzpX3",
+        "channel": "3pjMKXw"
+    }
+},
+{
+    "model": "channels.category",
+    "pk": "EgXQmXp",
+    "fields": {
+        "name": "Desktop",
+        "slug": "desktop",
+        "parent": "yOjzpX3",
+        "channel": "3pjMKXw"
+    }
+}
+]
