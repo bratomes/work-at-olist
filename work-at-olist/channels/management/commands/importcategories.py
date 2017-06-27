@@ -16,11 +16,14 @@ def read_csv_file(csv_file):
     :param csv_file: a string path of a csv file
     :return: generator in the form `['Books', 'Computers', 'Database']`
     """
-    with open(csv_file) as f:
-        heading = next(f) # get csv file heading
-        for row in csv.reader(f, delimiter='/'):
-            row = [e.strip() for e in row] # remove blank spaces from elements
-            yield row # return a category row in list format
+    try:
+        with open(csv_file) as f:
+            heading = next(f) # get csv file heading
+            for row in csv.reader(f, delimiter='/'):
+                row = [e.strip() for e in row] # remove blank spaces from elements
+                yield row # return a category row in list format
+    except FileNotFoundError:
+        logger.error('CSV file was not found. Exiting...')
 
 
 class Command(BaseCommand):
